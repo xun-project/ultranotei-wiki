@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Node Guardian - XUNI Knowledge Base and Faq</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,800%7CWork+Sans:200,300%7CJosefin+Sans:100" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/uikit.min.js" defer></script>
+    <script src="js/uikit-icons.min.js" defer></script>
+</head>
+
+<body class="uk-background-primary uk-light">
+
+
+    <div data-uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+
+        <nav class="uk-navbar-container uk-margin uk-light">
+            <div class="uk-container">
+                <div data-uk-navbar>
+                    <div class="uk-navbar-left">
+                        <a class="uk-navbar-item uk-logo uk-text-small" href="index.html">ULTRANOTE</a>
+                    </div>
+                    <div class="uk-navbar-center uk-visible@m">
+
+                        <ul class="uk-navbar-nav">
+                            <li class="uk-active"><a href="index.html">Home</a></li>
+                            <li ><a href="faq.html">Faq</a></li>
+                            <li ><a href="changelog.html">Changelog</a></li>
+                            <li ><a href="download.html">Download</a></li>
+                            <li ><a href="contact.html">Contact</a></li>
+                        </ul>
+
+                    </div>
+                    <div class="uk-navbar-right">
+                        <a class="uk-navbar-toggle " href="#search" data-uk-search-icon data-uk-toggle></a>
+                        <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas" data-uk-navbar-toggle-icon data-uk-toggle></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </div>
+
+
+<section class="tm-margin-large-top">
+    <div class="uk-container">
+
+        <h1 class="uk-margin-medium-bottom uk-heading-hero">Node Guardian</h1>
+        <ul class="uk-breadcrumb uk-margin-medium-bottom">
+            <li><a href="index.html">Home</a></li>
+            <li><span href="category.html">Node Guardian</span></li>
+        </ul>
+
+        <hr class="uk-margin-remove">
+        <ul class="uk-list uk-list-large uk-margin-medium-top">
+            <li><a href="#article-1" data-uk-scroll="duration: 400; offset: 140" class="hvr-forward"><span data-uk-icon="icon: arrow-right"></span>About</a></li>
+            <li><a href="#article-2" data-uk-scroll="duration: 400; offset: 140" class="hvr-forward"><span data-uk-icon="icon: arrow-right"></span>Installation</a></li>
+            <li><a href="#article-3" data-uk-scroll="duration: 400; offset: 140" class="hvr-forward"><span data-uk-icon="icon: arrow-right"></span>API</a></li>
+            <li><a href="#article-4" data-uk-scroll="duration: 400; offset: 140" class="hvr-forward"><span data-uk-icon="icon: arrow-right"></span>HTML</a></li>
+            
+        </ul>
+
+        <article class="uk-article uk-margin-xlarge-top">
+            <h2 id="article-1" class="uk-article-title uk-margin-medium-bottom">About<a href="#" data-uk-totop data-uk-scroll="duration: 400" class="tm-totop uk-float-right uk-margin-small-top"></a></h2>
+            <p>Known also as Smart Node, UltraNote Node Guard is a process guardian that monitors over the UltraNote daemon. It catches daemon errors and also monitors block progress. In case if an error is detected or the block count is stale, the UltraNote Node Guard restarts the daemon and notifies the devs in Discord over a web hook, or sends an email to the node admin.</i></a></p>
+            <p>The UltraNote Node Gaurd can also connect to a pool of node servers, so the node will be listed among available nodes for either infrastructure monitoring or a remote node with a listing fee.</p>
+        </article>
+        <article class="uk-article uk-margin-xlarge-top">
+			 <h2 id="article-2" class="uk-article-title uk-margin-medium-bottom">Installation<a href="#" data-uk-totop data-uk-scroll="duration: 400" class="tm-totop uk-float-right uk-margin-small-top"></a></h2>
+            <p>To install and run UltraNote Node Guard you have two options:</a></p>
+            <p>1. <b>Option 1:</b> Install and run Node Guardian via the node.js on virtual machine. If you go with the <b>Option 1</b>, then continue reading.</p>
+            <p>2. <b>Option 2:</b> Is to download and run the pre-compiled executable that already includes node.js. Please visit</p><i><p><a href="https://github.com/xun-project/ultranotei-guardian/blob/master/INSTALL.md" target="_blank"><b>Installation Page</b></a></i></p>
+            <p style="color:orange;">- For <b>Option 2</b> you don't have to install any dependencies.</p>
+            <p>For <b>Option 1</b>, you will need to install two dependencies:</p>
+            <p><span data-uk-icon="icon:  triangle-right"></span><a href="https://nodejs.org/en/" target="_blank"><b>Node.js</b></a></p>
+			<p><span data-uk-icon="icon:  triangle-right"></span><a href="https://www.npmjs.com/" target="_blank"><b>npm</b></a></p>
+            <p style="color:orange;">You can install Node.js via package manager </span>Before you run the guardian, check the config.json and set the correct settings. For an interactive config setup, please refer to this<b><i>From here</i></b></a></p>
+            <p>Once you have installed <b>Node.js</b> and <b>npm</b> you can run the guardian by simply doing:</p>
+			<p>- npm install</p>
+			<p>- node index.js</p>
+			<p>Before you run the guardian, check the config.json and set the correct settings. For an interactive config setup, please refer to this <i><a href="https://github.com/xun-project/ultranotei-guardian" target="_blank"><b>Installation Page</b></a></i>
+		</article>
+        <article class="uk-article uk-margin-xlarge-top">
+			<h2 id="article-3" class="uk-article-title uk-margin-medium-bottom">API<a href="#" data-uk-totop data-uk-scroll="duration: 400" class="tm-totop uk-float-right uk-margin-small-top"></a></h2>
+            <p>The UltraNote Node Guard can have an api that listens for incoming requests and returns some info about the node. The api only has one handler (all other request are considered invalid and return 403):</p>
+			<p>- <b>getInfo</b></p>
+        </article>
+        <article class="uk-article uk-margin-xlarge-top">
+            <h2 id="article-4" class="uk-article-title uk-margin-medium-bottom">HTML<a href="#" data-uk-totop data-uk-scroll="duration: 400" class="tm-totop uk-float-right uk-margin-small-top"></a></h2>
+            <p>The UltraNote Node Guard has a web interface. A feature available is to have the daemon automatically update to the newest version. By default, the auto update of the daemon must be manually enabled in the config.json file or with the interactive setup. NOTE: The auto update feature only applies to the daemon and not the guardian.</a></p>
+        </article>
+        
+    </div>
+</section>
+
+<div class="uk-margin-large-top uk-section-primary">
+    <div class="uk-container">
+        <hr class="uk-margin-remove">
+        <div class="uk-grid-large uk-flex-middle uk-margin-xlarge-top uk-margin-xlarge-bottom" data-uk-grid data-uk-scrollspy="cls: uk-animation-slide-bottom; repeat: true">
+            <div class="uk-width-auto@m">
+                <p class="uk-text-large">Didn't find an answer to your question?</p>
+            </div>
+            <div class="uk-width-expand@m">
+                <a class="tm-button tm-button-xlarge" href="contact.html">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="uk-section tm-primary-color-dark uk-light uk-text-center">
+    <div class="uk-container">
+
+        <div>
+            <ul class="uk-subnav uk-flex-center">
+                <li class="uk-first-column"><a href="index.html">Home</a></li>
+                <li><a href="faq.html">Faq</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="changelog.html">Changelog</a></li>
+                <li><a href="download.html">Download</a></li>
+            </ul>
+        </div>
+        <div class="uk-margin-medium">
+<div data-uk-grid class="uk-child-width-auto uk-grid-small uk-flex-center uk-grid">
+                <div class="uk-first-column">
+                    <a href="https://github.com/xun-project/" target="_blank" data-uk-icon="icon: github" class="uk-icon-link uk-icon"></a>
+                </div>
+                <div>
+                    <a href="https://twitter.com/ultranotecoin" target="_blank" data-uk-icon="icon: twitter" class="uk-icon-link uk-icon"></a>
+                </div>
+                <div>
+                    <a href="https://www.instagram.com/ultranote_official/" target="_blank" data-uk-icon="icon: instagram" class="uk-icon-link uk-icon"></a>
+                </div>
+                <div>
+                    <a href="https://www.facebook.com/Ultranotecoin/" target="_blank" data-uk-icon="icon: facebook" class="uk-icon-link uk-icon"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-margin-medium tm-text-xsmall uk-text-meta copyright">Copyright © 2017 - 2020 UltraNote - XUNI</div>
+
+    </div>
+</footer>
+
+
+<div id="search" class="uk-flex-top uk-background-primary uk-modal-search" data-uk-modal>
+
+    <button class="uk-modal-close-full uk-close-large" type="button" data-uk-close></button>
+    <div class="uk-modal-dialog uk-text-center uk-margin-auto-vertical uk-padding-large">
+
+        <form class="uk-search uk-search-large uk-margin-auto">
+            <input class="uk-search-input uk-text-center" type="search" placeholder="Search...">
+        </form>
+
+    </div>
+</div>
+
+
+<div id="offcanvas" data-uk-offcanvas="flip: true; overlay: true">
+    <div class="uk-offcanvas-bar">
+
+        <button class="uk-offcanvas-close" type="button" data-uk-close></button>
+
+        <ul class="uk-nav uk-nav-default">
+            <li class="uk-nav-header uk-logo">XUNI</li>
+            <li class="uk-parent">
+                <a href="index.html">Home</a>
+            </li>
+            <li ><a href="faq.html">Faq</a></li>
+            <li ><a href="changelog.html">Changelog</a></li>
+            <li ><a href="download.html">Download</a></li>
+            <li ><a href="contact.html">Contact</a></li>
+        </ul>
+
+    </div>
+</div>
+
+
+</body>
+
+</html>

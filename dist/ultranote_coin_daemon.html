@@ -1,0 +1,919 @@
+<!DOCTYPE html> <html lang="en-gb" dir="ltr"> <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UltraNote I Coin Daemon - XUNI Knowledge Base and Faq</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,800%7CWork+Sans:200,300%7CJosefin+Sans:100" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/uikit.min.js" defer></script>
+    <script src="js/uikit-icons.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script> </head> <body class="uk-background-primary uk-light">
+    <div data-uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+        <nav class="uk-navbar-container uk-margin uk-light">
+            <div class="uk-container">
+                <div data-uk-navbar>
+                    <div class="uk-navbar-left">
+                        <a class="uk-navbar-item uk-logo uk-text-small" href="index.html">ULTRANOTE INFINITY</a>
+                    </div>
+                    <div class="uk-navbar-center uk-visible@m">
+                        <ul class="uk-navbar-nav">
+                            <li class="uk-active"><a href="index.html">Home</a></li>
+                            <li><a href="faq.html">Faq</a></li>
+                            <li><a href="changelog.html">Changelog</a></li>
+                            <li><a href="download.html">Download</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="uk-navbar-right">
+                        <a class="uk-navbar-toggle " href="#search" data-uk-search-icon data-uk-toggle></a>
+                        <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas" data-uk-navbar-toggle-icon data-uk-toggle></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <section class="tm-margin-large-top">
+        <div class="uk-container">
+            <h1 class="uk-margin-medium-bottom uk-heading-hero">Coin Daemon</h1>
+            <ul class="uk-breadcrumb uk-margin-medium-bottom">
+                <li><a href="index.html">Home</a></li>
+                <li><span href="ultranote_coin_daemon.html">UltraNote Coin Daemon</span></li>
+            </ul>
+            <hr class="uk-margin-remove">
+            <ul class="uk-list uk-list-large uk-margin-medium-top">
+                <li><a href="#article-1" data-uk-scroll="duration: 400; offset: 140" class="hvr-forward"><span data-uk-icon="icon: arrow-right"></span>Daemon JSON RPC API</a></li>
+                <li><a href="#article-2" data-uk-scroll="duration: 400; offset: 140" class="hvr-forward"><span data-uk-icon="icon: arrow-right"></span>Interacting with the API</a></li>
+                <li><a href="#article-3" data-uk-scroll="duration: 400; offset: 140" class="hvr-forward"><span data-uk-icon="icon: arrow-right"></span>Using PHP</a></li>
+                <li><a href="#article-4" data-uk-scroll="duration: 400; offset: 140" class="hvr-forward"><span data-uk-icon="icon: arrow-right"></span>Using Bash</a></li>
+
+            </ul>
+            <article class="uk-article uk-margin-xlarge-top">
+                <h2 id="article-1" class="uk-article-title uk-margin-medium-bottom">Daemon JSON RPC API<a href="#" data-uk-totop data-uk-scroll="duration: 400" class="tm-totop 
+uk-float-right uk-margin-small-top"></a></h2>
+                <p><b>Daemon JSON RPC is a HTTP server which provides JSON 2.0 RPC interface for interacting with Daemon and Block Explorer.</b></p>
+            </article>
+            <article class="uk-article uk-margin-xlarge-top">
+                <h2 id="article-2" class="uk-article-title uk-margin-medium-bottom">Interacting with the API<a href="#" data-uk-totop data-uk-scroll="duration: 400" class="tm-totop 
+uk-float-right uk-margin-small-top"></a></h2>
+                <b><p>To start the Daemon JSON RPC API server at <code>http://localhost:43000/json_rpc</code> run:</p>
+        <p><code>./ultranoteid --rpc-bind-port=43000</p></code>
+    <p>To make the server accessible from another computer, use the <code>--rpc-bind-ip 0.0.0.0</code> switch.</p>
+    <p><code>./ultranoteid --rpc-bind-ip=0.0.0.0 --rpc-bind-port=43000</p></code>
+    <p>To make a JSON RPC request to your Daemon RPC you should use a POST request that looks like this:</p>
+    <p><code>http://localhost:43000/json_rpc</p></code></b>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><code>service address</code></p>
+                            </td>
+                            <td>
+                                <p>IP of Daemon RPC, if it is located on local machine it is either 127.0.0.1 or localhost</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+            <article class="uk-article uk-margin-xlarge-top">
+                <h2 id="article-3" class="uk-article-title uk-margin-medium-bottom">Using PHP<a href="#" data-uk-totop data-uk-scroll="duration: 400" class="tm-totop uk-float-right 
+uk-margin-small-top"></a></h2>
+                <h3>Configuration and instantiation</h3>
+                <b><p>Once the rpc service is installed you should be able to send post requests to the and address looking like:
+                <p><code>http://&lt;service address&gt;:&lt;service port&gt;/json_rpc</code></p>
+                Now, to install the php library, download it and put it in the according folder, then include where needed :</p>
+                <p>Then, To start using the offered functions, you need to create an object as follows:</p>
+                <p><code class="prettyprint">require_once( 'ultranote-rpc-php.php' );
+                $config = [
+    'rpcUrl' => 'http://localhost:8060/json_rpc',
+    'rpcUser' => 'theusername',
+    'rpcPassword' => 'thepassword' ]; $coin = new XuniCoin($config);</code>
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><code>$config['rpcUrl']</code></p>
+                            </td>
+                            <td>
+                                <p>The link to the RPC service</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>$config['rpcUser']</code></p>
+                            </td>
+                            <td>
+                                <p>The username of the RPC service (leave empty if none)</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>$config['rpcPassword']</code></p>
+                            </td>
+                            <td>
+                                <p>The Password of the RPC service (leave empty if none)</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3>getStatus()</h3>
+                <b><p>Returns the blockCount of the deamon, usefull to check if the daemon is syncronized.
+                <code>$coin->getStatus()->blockCount;</code>
+		<h4>Expected output: </h4>
+                <code>39375</code>
+                </p></b>
+                <h3>createAddress()</h3>
+                <b><p>Create a new wallet. <code>$coin->createAddress();</code>
+                <h4>Expected output: </h4>
+                <code>'Xuniik72MxR2Cn29BzvVcsPmPn2NxNPGHfpYocW7CrjhLVs928LUmgfBJnVJE1xoHy8fdL3dVcLzF49J9Y8SsryHYMWMX4BySs3'</code>
+                </p></b>
+                <h3>deleteAddress($address)</h3>
+                <b><p>Create a new wallet. <code>$address = ''Xuniik72MxR2Cn29BzvV...'; $coin->deleteAddress($address);</code>
+                <h4>Expected output: </h4>
+                <code>true</code>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><code>$address</code></p>
+                            </td>
+                            <td>
+                                <p>The address to delete</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </p></b>
+
+
+
+                <h3>getBalance($address)</h3>
+                <b><p>Returns the balance of the given address
+<code>$address = 'Xuniik72MxR2Cn29BzvV...'; $coin->deleteAddress($address);</code>
+                <h4>Expected output: </h4>
+                <code>135.32</code>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><code>$address</code></p>
+                            </td>
+                            <td>
+                                <p>The address to check</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </p></b>
+
+
+
+
+
+
+
+                <h3>getUnconfirmedTransactionHashes($address)</h3>
+                <b><p>Returns the unconfirmed transactions concerning the given address, can be used to check if there are new transactions in the pool. <code>$address = 
+'Xuniik72MxR2Cn29BzvV...'; $coin->getUnconfirmedTransactionHashes($address);</code>
+                <h4>Expected output: </h4> <code>{'7031309d4a0d87241c3700cafaeeefc04b226dc3387cedef4e93226aa76f21cb', 
+'7031309d4a0d87241c3700cafaeeefc04b226dc3387cedef4e93226aa76f21cb'}</code>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><code>$address</code></p>
+                            </td>
+                            <td>
+                                <p>The address to check</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </p></b>
+                <h3>getTransactions($firstBlockIndex,$blockCount)</h3>
+                <b><p>Returns all the 'N' transactions that happened starting a given block. <code>$firstBlockIndex = 39075; $blockCount=2; 
+$coin->getTransactions($firstBlockIndex,$blockCount);</code>
+                <h4>Expected output: </h4> <code>{(
+    [blockHash] => '5acd33b287a2ed31f7a15e34f06a199739577c5cd83ce593170c6c2b034662d2'
+    [transactions] => {} ), (
+    [blockHash] => '327e11cec4ffc46bb669477fba434e3c60f36c9ffc0c223c52f30d7b3ff96e73'
+    [transactions] => {} )}</code>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><code>$firstBlockIndex</code></p>
+                            </td>
+                            <td>
+                                <p>The first block to start from</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>$blockCount</code></p>
+                            </td>
+                            <td>
+                                <p>The number of blocks to analyse for transactions</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </p></b>
+                <h3>getTransaction($transactionHash)</h3>
+                <b><p>Returns the details of a given transaction. <code>$transactionHash = '9fb36d4bb905ef360c877ce8eba9c9dafc81da27cae85bd4727af46c5ba75ef7'; 
+$coin->getTransaction($transactionHash);</code>
+                <h4>Expected output: </h4> <code>( [amount] => -1100000 [blockIndex] => 356658 [confirmations] => 87 [extra] => 
+'0184fc63971f7a884edd6c79d30bf96b1958bcae9b9413fa29da9d033b187fe275' [fee] => 100000 [isBase] => [paymentId] => [state] => 0 [timestamp] => 1556123357 [transactionHash] => 
+'4730d061536e6333dcfcc983b11dd87b1412101f139ca60a5c459032b0efc643' [transfers] =>{(
+                [address] => 'Xuniik72MxR2Cn29BzvV...'
+                [amount] => 1000000
+                [type] => 0
+            ),(
+                [address] => 'Xuniik72MxR2Cn29BzvV...'
+                [amount] => 5900000
+                [type] => 2
+            ),(
+                [address] => 'Xuniik72MxR2Cn29BzvV...'
+                [amount] => -7000000
+                [type] => 0
+            )
+    )} [unlockTime] => 0 )</code>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><code>$transactionHash</code></p>
+                            </td>
+                            <td>
+                                <p>The hash of the transaction you are interested in</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </p></b>
+                <h3>sendTransaction($from,$to,$ammount)</h3>
+                <b><p>Sends an ammount of Xun from one address to an other. <code>$from = 'Xuniik72MxR2Cn29BzvV...'; $to='Xuniik72MxR2Cn29BzvV...'; $ammount=1100000; 
+$coin->sendTransaction($from,$to,$ammount);</code>
+                <h4>Expected output: </h4> <code>'a599cbd0616c60e0ea75aaaac1c79dd8ba23e1ab50eeed6fc48206ec13fd8828'</code>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><code>$from</code></p>
+                            </td>
+                            <td>
+                                <p>The address of the sender of the currency</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>$to</code></p>
+                            </td>
+                            <td>
+                                <p>The address of the recipient of the currency</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>$ammount</code></p>
+                            </td>
+                            <td>
+                                <p>Ammount of currency to send</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </p></b>
+                <h3>sendTransactionAdvanced($params)</h3>
+                <b><p>Same as the sendTransaction function, with more options. <code>$params = [
+    "addresses"=>["Xuniik72MxR2Cn29BzvV..."],
+    "anonymity"=> 2,
+    "fee"=> 100000,
+    "transfers"=>[
+        [
+            "amount"=>1000000,
+            "address"=>"Xuniik72MxR2Cn29BzvV..."
+        ],
+        [
+            "amount"=>3000000,
+            "address"=>"Xun3cs87FJL5r..."
+        ] ]]; $coin->sendTransactionAdvanced($params);</code>
+                <h4>Expected output: </h4> <code>'a599cbd0616c60e0ea75aaaac1c79dd8ba23e1ab50eeed6fc48206ec13fd8828'</code>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><code>$params['addresses']</code></p>
+                            </td>
+                            <td>
+                                <p>Array of Addresses, Addresses which should be charged. Be careful, If you didn't specify addresses the daemon can charge all wallets to collets 
+needed amount.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>$params['anonymity']</code></p>
+                            </td>
+                            <td>
+                                <p>The anonymity level of the transaction</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>$params['fee']</code></p>
+                            </td>
+                            <td>
+                                <p>The fee that you are willing to pay for the transaction</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>$params['transfers']</code></p>
+                            </td>
+                            <td>
+                                <p>Array of Arrays, Contains couples [ammount, address] of all the transfers you want to execute within the transaction</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </p></b>
+                <h3>reset()</h3>
+                <b><p>Re-sync cointainer starting from 0 block.
+                </p></b>
+                <h3>save()</h3>
+                <b><p>Save current container state. Do it before making reserve copies or reboots.
+                </p></b>
+            </article>
+
+
+
+            <article class="uk-article uk-margin-xlarge-top">
+                <h2  id="article-4" class="uk-article-title uk-margin-medium-bottom">Using Bash<a href="#" data-uk-totop data-uk-scroll="duration: 400" class="tm-totop uk-float-right uk-margin-small-top"></a></h2>
+                <h3>Configuration and instantiation</h3>
+                <b><p>Once the rpc service is installed you should be able to send post requests to the and address looking like:
+                <p><code>http://&lt;service address&gt;:&lt;service port&gt;/json_rpc</code></p>
+
+
+                <h3>getStatus</h3>
+                <b><p>Returns the blockCount of the deamon, usefull to check if the daemon is syncronized.
+                <code>curl -d '{"method":"getStatus", "params": {},"jsonrpc": "2.0", "id": "1"}' http://"username":"password"@localhost:8070/json_rpc</code>
+                <h4>Expected output: </h4>
+                <code>{
+    "id":"1",
+    "jsonrpc":"2.0",
+    "result":{
+        "blockCount":30375,
+        "knownBlockCount":30375,
+        "lastBlockHash":"ffa6dda0facc4a7ea903b0cededd897d2f281ac09eb6f50b9fed840dfe5073b5",
+        "peerCount":22
+}
+}</code>
+                </p></b>
+
+
+
+                <h3>createAddress</h3>
+                <b><p>Create a new wallet.
+<code>curl -d '{"method":"createAddress","params": {},"jsonrpc": "2.0", "id": "1"}' http://"username":"password"@localhost:8070/json_rpc</code>
+                <h4>Expected output: </h4>
+                <code>{
+    "id":"1",
+    "jsonrpc":"2.0",
+    "result":{
+        "address":"Xuniik72MxR2Cn29BzvV..."
+    }
+}</code>
+                </p></b>
+
+
+
+                <h3>deleteAddress</h3>
+                <b><p>Delete wallet.
+<code>curl -d '{"method":"deleteAddress","params": {"address":"Xuniik72MxR2Cn29BzvV..."},"jsonrpc": "2.0", "id": "1"}' http://"username":"password"@localhost:8070/json_rpc</code>
+                <h4>Expected output: </h4>
+                <code>{
+    "id":"1",
+    "jsonrpc":"2.0",
+    "result":{}
+}</code>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><code>address</code></p>
+                            </td>
+                            <td>
+                                <p>The address to delete</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </p></b>
+
+
+
+                <h3>getBalance</h3>
+                <b><p>Create a new wallet.
+<code>curl -d '{"method":"getBalance","params": {"address":"Xuniik72MxR2Cn29BzvV..."},"jsonrpc": "2.0", "id": "1"}' http://"username":"password"@localhost:8070/json_rpc</code>
+                <h4>Expected output: </h4>
+                <code>{
+    "id":"1",
+    "jsonrpc":"2.0",
+    "result":{
+        "availableBalance":0,
+        "lockedAmount":0
+    }
+}</code>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><code>address</code></p>
+                            </td>
+                            <td>
+                                <p>The address to check</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </p></b>
+
+
+
+                <h3>getUnconfirmedTransactionHashes</h3>
+                <b><p>Returns the unconfirmed transactions concerning the given address, can be used to check if there are new transactions in the pool.
+<code>curl -d '{"method":"getUnconfirmedTransactionHashes","params": {"address":"Xuniik72MxR2Cn29BzvV..."},"jsonrpc": "2.0", "id": "1"}' http://"username":"password"@localhost:8070/json_rpc</code>
+                <h4>Expected output: </h4>
+<code>{
+    "id":"1",
+    "jsonrpc":"2.0",
+    "result":{
+        "transactionHashes":[
+            "7031309d4a0d87241c3700cafaeeefc04b226dc3387cedef4e93226aa76f21cb",
+            "7031309d4a0d87241c3700cafaeeefc04b226dc3387cedef4e93226aa76f21cb" 
+        ]
+    }
+}</code>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><code>address</code></p>
+                            </td>
+                            <td>
+                                <p>The address to check</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </p></b>
+
+
+
+                <h3>getTransactions</h3>
+                <b><p>Returns all the 'N' transactions that happened starting a given block.
+<code>curl -d '{"method":"getTransactions","params": {"firstBlockIndex": 53888, "blockCount": 5},"jsonrpc": "2.0", "id": "1"}' http://"username":"password"@localhost:8070/json_rpc</code>
+                <h4>Expected output: </h4>
+<code>{
+    "id":"1",
+    "jsonrpc":"2.0",
+    "result":{
+        "items":[
+            {"blockHash":"ca9179c4e02017adcd538efb3874b1857b4121814c7d15ec15f8fc0a93481466","transactions":[{}]},
+            {"blockHash":"ca9179c4e02017adcd538efb3874b1857b4121814c7d15ec15f8fc0a93481466","transactions":[{}]}
+        ]
+    }
+}</code>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><code>firstBlockIndex</code></p>
+                            </td>
+                            <td>
+                                <p>The first block to start from</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>blockCount</code></p>
+                            </td>
+                            <td>
+                                <p>The number of blocks to analyse for transactions</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </p></b>
+
+
+
+                <h3>getTransaction</h3>
+                <b><p>Returns the details of a given transaction.
+<code>curl -d '{"method":"getTransaction","params": {"transactionHash":"9fb36d4bb905ef360c877ce8eba9c9dafc81da27cae85bd4727af46c5ba75ef7"},"jsonrpc": "2.0", "id": "1"}' http://"username":"password"@localhost:8070/json_rpc</code>
+                <h4>Expected output: </h4>
+<code>{
+    "id":"1",
+    "jsonrpc":"2.0",
+    "result":{
+        "transaction":{
+            "amount":-1000,
+            "blockIndex":4294967295,
+            "extra":"015371f8a3cdae5b7ec5fd8e79e3f1d524f8f4d9d884d6c74b81d63e4076b04b1201",
+            "fee":0,
+            "isBase":false,
+            "paymentId":"",
+            "state":2,
+            "timestamp":0,
+            "transactionHash":"9fb36d4bb905ef360c877ce8eba9c9dafc81da27cae85bd4727af46c5ba75ef7",
+            "transfers":[
+                {
+                    "address":"Xuniik72MxR2Cn29BzvVcsPmPn2NxNPGHfpYocW7CrjhLVs928LUmgfBJnVJE1xoHy8fdL3dVcLzF49J9Y8SsryHYMWMX4BySs3",
+                    "amount":1000,
+                    "type":0
+                },
+                {
+                    "address":"Xuniik72MxR2Cn29BzvVcsPmPn2NxNPGHfpYocW7CrjhLVs928LUmgfBJnVJE1xoHy8fdL3dVcLzF49J9Y8SsryHYMWMX4BySs3",
+                    "amount":899000,
+                    "type":2
+                },
+                {
+                    "address":"Xuniik72MxR2Cn29BzvVcsPmPn2NxNPGHfpYocW7CrjhLVs928LUmgfBJnVJE1xoHy8fdL3dVcLzF49J9Y8SsryHYMWMX4BySs3",
+                    "amount":-900000,
+                    "type":0
+                }
+            ],
+        "unlockTime":0
+        }
+    }
+}</code>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><code>transactionHash</code></p>
+                            </td>
+                            <td>
+                                <p>The hash of the transaction you are interested in</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </p></b>
+
+
+
+                <h3>sendTransaction</h3>
+                <b><p>Sends an ammount of Xun from one address to an other.
+<code>curl -d '{
+    "method":"sendTransaction",
+    "params": {
+        "addresses":["XuniiZtBPE7e..."],
+        "anonymity": 2,
+        "fee": 10000,
+        "transfers":[
+            {
+                "amount":900000,
+                "address":"XuniiqFybMCT..."
+            }
+        ]
+    },
+    "jsonrpc": "2.0", 
+    "id": "1"
+}' http://"username":"password"@localhost:8070/json_rpc</code>
+                <h4>Expected output: </h4>
+<code>{
+    "id":"1",
+    "jsonrpc":"2.0",
+    "result":{
+        "transactionhash":"a599cbd0616c60e0ea75aaaac1c79dd8ba23e1ab50eeed6fc48206ec13fd8828..."
+    }
+}</code>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p><code>addresses</code></p>
+                            </td>
+                            <td>
+                                <p>Array of Addresses, Addresses which should be charged. Be careful, If you didn't specify addresses the daemon can charge all wallets to collets needed amount.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>anonymity</code></p>
+                            </td>
+                            <td>
+                                <p>The anonymity level of the transaction</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>fee</code></p>
+                            </td>
+                            <td>
+                                <p>The fee that you are willing to pay for the transaction</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>transfers</code></p>
+                            </td>
+                            <td>
+                                <p>Array of Arrays, Contains couples [ammount, address] of all the transfers you want to execute within the transaction</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </p></b>
+
+
+
+                <h3>reset</h3>
+                <b><p>Re-sync cointainer starting from 0 block.
+                </p></b>
+
+		<code>curl -d '{"jsonrpc":"2.0","id":1, "method":"reset","params":{"scanHeight":100000}}' http://localhost:8070/json_rpc</code>
+                <h4>Expected output: </h4>
+		<code>{
+		  "id":1,
+ 		  "jsonrpc":"2.0",
+  		  "result":{}
+		}
+		</code>
+
+                <h3>save</h3>
+                <b><p>Save current container state. Do it before making reserve copies or reboots.
+                </p></b>
+		<code>curl -d '{"jsonrpc":"2.0","id":1, "method":"save","params":{}}' http://localhost:8070/json_rpc</code>
+                <h4>Expected output: </h4>
+                <code>{
+                  "id":1,
+                  "jsonrpc":"2.0",
+                  "result":{}
+                }
+                </code>
+
+                <h3>getViewKey</h3>
+                <b><p>Returns your view key.</p></b>
+                <code>curl -d '{"jsonrpc":"2.0","id":1,"method":"getViewKey","params":{}}' http://localhost:8070/json_rpc</code>
+                <h4>Expected output: </h4>
+                <code>{
+  		"id":1,
+  		"jsonrpc":"2.0",
+  		"result":{
+    		"viewSecretKey":"xxxxx..."
+  		  }
+                }
+                </code>
+                <h3>getSpendKeys</h3>
+                <b><p>Returns your spend keys.</p></b>
+                <code>curl -d '{"jsonrpc":"2.0","id":1,"params":{"address":"Xuniik72MxR2Cn29BzvVcsPmPn2NxNPGHfpYocW7CrjhLVs928LUmgfBJnVJE1xoHy8fdL3dVcLzF49J9Y8SsryHYMWMX4BySs3"}}' http://localhost:8070/json_rpc</code>
+                <h4>Expected output: </h4>
+                <code>{
+                "id":1,
+                "jsonrpc":"2.0",
+                "result":{
+                "spendSecretKey":"xxxxx...",
+    		"spendPublicKey":"xxxxx..."
+                  }
+                }
+                </code>
+                <h3>getBlockHashes</h3>
+                <b><p>Returns an array of block hashes for a specified block range.</p></b>
+		<code>curl -d '{"jsonrpc":"2.0","id":1,"method":"getBlockHashes","params":{"firstBlockIndex":0,"blockCount":3}}' http://localhost:8070/json_rpc</code>
+                <h4>Expected output: </h4>
+		<code>{
+ 		 "id":1,
+  		 "jsonrpc":"2.0",
+  		 "result":{
+    		 "blockHashes":[
+      		 "7fb97...",
+      		 "8c973...",
+      		 "2ef06..."
+    		 ]
+  		  }
+		 }
+		</code>
+                <h3>sendFusionTransaction</h3>
+                <b><p>sendFusionTransaction method allows you to send a fusion transaction, by taking funds from selected addresses and transferring them to the destination address </p></b>
+		<b><p>If there aren't any outputs that can be optimized, sendFusionTransaction will return an error.</p></b>
+		<b><p>You can use estimateFusion to check the outputs, available for the optimization.</p></b>
+                <code>curl -d '{"jsonrpc":"2.0","id":1,"method":"sendFusionTransaction","params":{"threshold":1000,"anonymity":2,"address":["XuniihE4LneQDtUjFTiP..."],"destinationAddress":"XuniihE4LneQDtUjFTiP..."}}' http://localhost:8070/json_rpc</code>
+           	<h4>Expected output: </h4>
+		<code>{
+		"id":1,
+  		"jsonrpc":"2.0",
+  		"result":{
+   		"transactionHash":"93faed..."
+  		}
+		 }
+		</code>
+		 </article>
+        </div>
+    </section>
+    <div class="uk-margin-large-top uk-section-primary">
+        <div class="uk-container">
+            <hr class="uk-margin-remove">
+            <div class="uk-grid-large uk-flex-middle uk-margin-xlarge-top uk-margin-xlarge-bottom" data-uk-grid data-uk-scrollspy="cls: uk-animation-slide-bottom; repeat: true">
+                <div class="uk-width-auto@m">
+                    <p class="uk-text-large">Didn't find an answer to your question?</p>
+                </div>
+                <div class="uk-width-expand@m">
+                    <a class="tm-button tm-button-xlarge" href="contact.html">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="uk-section tm-primary-color-dark uk-light uk-text-center">
+        <div class="uk-container">
+            <div>
+                <ul class="uk-subnav uk-flex-center">
+                    <li class="uk-first-column"><a href="index.html">Home</a></li>
+                    <li><a href="faq.html">Faq</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="changelog.html">Changelog</a></li>
+                    <li><a href="download.html">Download</a></li>
+                </ul>
+            </div>
+            <div class="uk-margin-medium">
+                <div data-uk-grid class="uk-child-width-auto uk-grid-small uk-flex-center uk-grid">
+                    <div class="uk-first-column">
+                        <a href="https://github.com/xun-project/" target="_blank" data-uk-icon="icon: github" class="uk-icon-link uk-icon"></a>
+                    </div>
+                    <div>
+                        <a href="https://twitter.com/ultranotecoin" target="_blank" data-uk-icon="icon: twitter" class="uk-icon-link uk-icon"></a>
+                    </div>
+                    <div>
+                        <a href="https://www.instagram.com/ultranote_official/" target="_blank" data-uk-icon="icon: instagram" class="uk-icon-link uk-icon"></a>
+                    </div>
+                    <div>
+                        <a href="https://www.facebook.com/Ultranotecoin/" target="_blank" data-uk-icon="icon: facebook" class="uk-icon-link uk-icon"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-margin-medium tm-text-xsmall uk-text-meta copyright">Copyright © 2017 - 2021 UltraNote Infinity - XUNI</div>
+        </div>
+    </footer>
+    <div id="search" class="uk-flex-top uk-background-primary uk-modal-search" data-uk-modal>
+        <button class="uk-modal-close-full uk-close-large" type="button" data-uk-close></button>
+        <div class="uk-modal-dialog uk-text-center uk-margin-auto-vertical uk-padding-large">
+            <form class="uk-search uk-search-large uk-margin-auto">
+                <input class="uk-search-input uk-text-center" type="search" placeholder="Search...">
+            </form>
+        </div>
+    </div>
+    <div id="offcanvas" data-uk-offcanvas="flip: true; overlay: true">
+        <div class="uk-offcanvas-bar">
+            <button class="uk-offcanvas-close" type="button" data-uk-close></button>
+            <ul class="uk-nav uk-nav-default">
+                <li class="uk-nav-header uk-logo">XUNI</li>
+                <li class="uk-parent">
+                    <a href="index.html">Home</a>
+                </li>
+                <li><a href="faq.html">Faq</a></li>
+                <li><a href="changelog.html">Changelog</a></li>
+                <li><a href="download.html">Download</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </div> </body> <script type="text/javascript">
+    (function() {
+     var x = document.getElementsByTagName("code")
+    l=x.length
+     for (var i = 0; i < l; i++) {
+       // x[i].classList.add("prettyprint");
+        var e = x[0];
+        console.log(x)
+        var d = document.createElement('pre');
+        d.classList.add("prettyprint");
+        d.classList.add("lang-php");
+        d.innerHTML = e.innerHTML;
+        e.parentNode.replaceChild(d, e);
+     }
+     })();
+</script> <style type="text/css">
+    table td:first-of-type{
+        width:300px;
+    }
+    table, th, td {
+      border: 1px solid white;
+    }
+    table{
+        font-size: small;
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .prettyprint {
+        font-size: small !important;
+        //filter:invert(1);
+        border-radius: 0 !important;
+        border:0px !important;
+    }
+    h3{
+        font-size: 1.4rem;
+        line-height: 1.2;
+        font-weight: 400;
+        letter-spacing: 0;
+        margin-right: 30px;
+        margin-top: 60px;
+    }
+    h4{
+        font-size: 1.2rem;
+        line-height: 1.2;
+        font-weight: 400;
+        letter-spacing: 0;
+        margin-right: 10px;
+        margin-top: 0px;
+    }
+</style> </html>
+

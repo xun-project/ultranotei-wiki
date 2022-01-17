@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UltraNote RPC Wallet - XUNI Knowledge Base and Faq</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,800%7CWork+Sans:200,300%7CJosefin+Sans:100" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/uikit.min.js" defer></script>
+    <script src="js/uikit-icons.min.js" defer></script>
+</head>
+
+<body class="uk-background-primary uk-light">
+
+
+    <div data-uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+
+        <nav class="uk-navbar-container uk-margin uk-light">
+            <div class="uk-container">
+                <div data-uk-navbar>
+                    <div class="uk-navbar-left">
+                        <a class="uk-navbar-item uk-logo uk-text-small" href="index.html">ULTRANOTE</a>
+                    </div>
+                    <div class="uk-navbar-center uk-visible@m">
+
+                        <ul class="uk-navbar-nav">
+                            <li class="uk-active"><a href="index.html">Home</a></li>
+                            <li ><a href="faq.html">Faq</a></li>
+                            <li ><a href="changelog.html">Changelog</a></li>
+                            <li ><a href="download.html">Download</a></li>
+                            <li ><a href="contact.html">Contact</a></li>
+                        </ul>
+
+                    </div>
+                    <div class="uk-navbar-right">
+                        <a class="uk-navbar-toggle " href="#search" data-uk-search-icon data-uk-toggle></a>
+                        <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas" data-uk-navbar-toggle-icon data-uk-toggle></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </div>
+
+
+<section class="tm-margin-large-top">
+    <div class="uk-container">
+
+        <h1 class="uk-margin-medium-bottom uk-heading-hero">UltraNote RPC Wallet</h1>
+        <ul class="uk-breadcrumb uk-margin-medium-bottom">
+            <li><a href="index.html">Home</a></li>
+            <li><span href="ultranote_walletd_config.html">UltraNote RPC Wallet</span></li>
+        </ul>
+
+        <hr class="uk-margin-remove">
+        <ul class="uk-list uk-list-large uk-margin-medium-top">
+            <li><a href="#article-1" data-uk-scroll="duration: 400; offset: 140" class="hvr-forward"><span data-uk-icon="icon: arrow-right"></span> Start</a></li>
+            <li><a href="#article-2" data-uk-scroll="duration: 400; offset: 140" class="hvr-forward"><span data-uk-icon="icon: arrow-right"></span> Example of a config file</a></li>
+            <li><a href="#article-3" data-uk-scroll="duration: 400; offset: 140" class="hvr-forward"><span data-uk-icon="icon: arrow-right"></span> Generate a new wallet</a></li>
+            <li><a href="#article-4" data-uk-scroll="duration: 400; offset: 140" class="hvr-forward"><span data-uk-icon="icon: arrow-right"></span> Start UltraNote RPC wallet</a></li>
+            <li><a href="#article-5" data-uk-scroll="duration: 400; offset: 140" class="hvr-forward"><span data-uk-icon="icon: arrow-right"></span> UltraNote RPC wallet JSON RPC API</a></li>
+        </ul>
+
+        <article class="uk-article uk-margin-xlarge-top">
+            <h2 id="article-1" class="uk-article-title uk-margin-medium-bottom">Start<a href="#" data-uk-totop data-uk-scroll="duration: 400" class="tm-totop uk-float-right uk-margin-small-top"></a></h2>
+            <p><b>On this page you will find description of every method in UltraNote Ininfity RPC Wallet API. UltraNote Infinity RPC Wallet is a HTTP server which provides JSON 2.0 RPC interface for UltraNote payment operations and address management. Each method has its own page that can be found by clicking on this method.</b></p>
+            <p><b>To make a JSON PRC request to your UltraNote Infinity RPC Wallet you should use POST request that looks like this:</b></p>
+	    <p><code>http://service_address:service_port/json_rpc</p></code>
+	    <p><b>Where:</p></b>
+            <p><i>service_address: is an IP of UltraNote Infinity RPC Wallet, if RPC Wallet is located on local machine it is either 127.0.0.1 or localhost.</p></i>
+	    <p><i>service_port: is UltraNote Infinity RPC Wallet port, by default it is binded to 8070 port, but it can be manually binded to any port you want.</p></i>
+	    <p><b>Walletd common options:</p></b>
+
+<table>
+                    <thead>
+                        
+			<tr>
+                            <th>Option</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+			<tr>
+                            <td>
+                                <p><code>-c [ --config ]</code></p>
+                            </td>
+                            <td>
+                                <p><b>Configuration file.</p></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>-h [ --help ]</code></p>
+                            </td>
+                            <td>
+                                <p><b>Produce this help message and exit.</p></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>--local</code></p>
+                            </td>
+                            <td>
+                                <p><b>Start with local node. (remote is default)</p></b>
+                            </td>
+                        <tr>
+                        <td>
+                                <p><code>--testnet</code></p>
+                            </td>
+                            <td>
+                                <p><b>Testnet mode.</p></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>--data-dir</code></p>
+                            </td>
+                            <td>
+                                <p><b>Specify data directory.</p></b>
+                            </td>
+
+			<tr>
+                            <td>
+                                <p><code>--bind-address</code></p>
+                            </td>
+                            <td>
+                                <p><b>Which address to bind UltraNote RPC Wallet to. Default value is 0.0.0.0</p></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>--bind-port</code></p>
+                            </td>
+                            <td>
+                                <p><b>Which port to bind UltraNote RPC Wallet to. Default value is 8070</p></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>--rpc-user</code></p>
+                            </td>
+                            <td>
+                                <p><b>Username to use the payment service. If authorization is not required, you can leave it empty.</p></b>
+                            </td>
+               		<tr>
+			<td>
+                                <p><code>--rpc-password</code></p>
+                            </td>
+                            <td>
+                                <p><b>Password to use the payment service. If authorization is not required, you can leave it empty.</p></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>-w [ --container-file ]</code></p>
+                            </td>
+                            <td>
+                                <p><b>Container file.</p></b>
+                            </td>
+                        <tr>
+                            <td>
+                                <p><code>-p [ --container-password ]</code></p>
+                            </td>
+                            <td>
+                                <p><b>Container password.</p></b>
+                            </td>
+                        <tr>
+                            <td>
+                                <p><code>-g [ --generate-container ]</code></p>
+                            </td>
+                            <td>
+                                <p><b>Generate a new container.</p></b>
+                            </td>
+                        <tr>
+                            <td>
+                                <p><code>-d [ --daemon ]</code></p>
+                            </td>
+                            <td>
+                                <p><b>Run as daemon in Unix or as a service in Windows.</p></b>
+                            </td>
+
+                        <tr>
+                            <td>
+                                <p><code>--register-service</code></p>
+                            </td>
+                            <td>
+                                <p><b>Register service and exit. (Windows Only).</p></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>--unregister-service</code></p>
+                            </td>
+                            <td>
+                                <p><b>Unregister service and exit. (Windows Only).</p></b>
+                            </td>
+                        <tr>
+                            <td>
+                                <p><code>-l [ --log-file ]</code></p>
+                            </td>
+                            <td>
+                                <p><b>Log file</p></b>
+                            </td>
+
+                        
+			</tr>
+			<tr>
+      		            <td>
+                                <p><code>--server-root</code></p>
+                            </td>
+                            <td>
+                                <p><b>Working directory that you wish to use for UltraNote RPC Wallet. Default is current working directory.</p></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>--log-level</code></p>
+                            </td>
+                            <td>
+                                <p><b>Set log level.</p></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>--address</code></p>
+                            </td>
+                            <td>
+                                <p><b>Print wallet address and exit.</p></b>
+                            </td>
+			    </tr>
+                    </tbody>
+                </table>
+<br>
+			   <p><b>Remote node options:</p></b>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+			   <tr>
+			   <td>
+                                <p><code>--daemon-address</code></p>
+                            </td>
+                            <td>
+                                <p><b>UltraNote daemon address, You can set to localhost.</p></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>--daemon-port</code></p>
+                            </td>
+                            <td>
+                                <p><b>UltraNote daemon port, You can use 8081.</p></b>
+			</td>
+                        </tr>
+                    </tbody>
+		    </table>
+		<br>
+		<p><b>Local node options:</p></b>
+<br>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+			<tr>
+   			<td>
+                                <p><code>--p2p-bind-ip</code></p>
+                            </td>
+                            <td>
+                                <p><b>Interface for p2p network protocol, You can use 0.0.0.0.</p></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>--p2p-bind-port</code></p>
+			   <td>
+                                <p><b>Port for p2p network protocol, You can use 30000.</p></b>
+			<tr>   
+			<td>
+                                <p><code>--p2p-external-port</code></p>
+                            </td>
+                            <td>
+                                <p><b>External port for p2p network protocol. Use 0 if port forwarding used with NAT.</p></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>--allow-local-ip</code></p>
+                            </td>
+                            <td>
+                                <p><b>Allow local ip add to peer list, mostly in debug puposes.</p></b>
+                        <tr>
+                            <td>
+                                <p><code>--add-peer</code></p>
+                           <td>
+                                <p><b>Manually add peer to local peer list.</p></b>
+                        <tr>
+                        <td>
+                                <p><code>--add-priority-node</code></p>
+                            </td>
+                            <td>
+                                <p><b>Specify list of peers to connect to and attempt to keep connection open.</p></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><code>--add-exclusive-node</code></p>
+                            </td>
+                            <td>
+                                <p><b>Specify list of peers to connect to only.</p></b>
+                        <tr>
+                            <td>
+                                <p><code>--seed-node</code></p>
+                           <td>
+                                <p><b>Connect to a node to retrieve peer address and disconnect.</p></b>
+                        <tr>
+                        <td>
+                                <p><code>--hide-my-port</code></p>
+                            </td>
+                            <td>
+                                <p><b>Do not announce yourself as peerlist candidate.</p></b>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+
+	</article>
+        <article class="uk-article uk-margin-xlarge-top">
+            <h2 id="article-2" class="uk-article-title uk-margin-medium-bottom">Example of config file<a href="#" data-uk-totop data-uk-scroll="duration: 400" class="tm-totop uk-float-right uk-margin-small-top"></a></h2>
+	
+	<p><code>container-file=				# REQUIRED. Path to wallet container
+container-password=			# REQUIRED. Password
+data-dir=/srv/ultranote		# Where blockchain data is stored. Defaults to /home/user/.UltraNote
+bind-address=0.0.0.0			# Use server IP or 127.0.0.1
+bind-port=8070				# Port
+rpc-user=						# Auth user for RPC service
+rpc-password=					# Password for RPC service
+server-root=/srv/ultranote	# Working directory
+log-level=						# Log level 0-4
+local=1						# Use In-process node
+daemon-address=localhost		# remote daemon address, don't use it with in-process mode
+daemon-port=30000				# UltraNote P2P port. 
+
+</code></p>
+	<h3><p><b>Minimal Configuration</h3></p></b>
+        <p><code>container-file=/etc/ultranote/container.iwallet
+container-password=secret123
+bind-address=127.0.0.1
+bind-port=8070
+log-file=/var/log/walletd.log
+local=1
+</code></p>
+
+
+        </article>
+        <article class="uk-article uk-margin-xlarge-top">
+            <h2 id="article-3" class="uk-article-title uk-margin-medium-bottom">Generate wallet container<a href="#" data-uk-totop data-uk-scroll="duration: 400" class="tm-totop uk-float-right uk-margin-small-top"></a></h2>
+            <p><code>walletd --config=/etc/paymentgate.conf --generate-container</code></p>
+        </article>
+        <article class="uk-article uk-margin-xlarge-top">
+            <h2 id="article-4" class="uk-article-title uk-margin-medium-bottom">Start UltraNote RPC wallet<a href="#" data-uk-totop data-uk-scroll="duration: 400" class="tm-totop uk-float-right uk-margin-small-top"></a></h2>
+           <p><code>walletd --config=/etc/paymentgate.conf</code></p>
+        </article>
+        <article class="uk-article uk-margin-xlarge-top">
+            <h2 id="article-5" class="uk-article-title uk-margin-medium-bottom">UltraNote RPC wallet JSON RPC API<a href="#" data-uk-totop data-uk-scroll="duration: 400" class="tm-totop uk-float-right uk-margin-small-top"></a></h2>
+            <p><b>UltraNote RPC Wallet API allows you to create addresses for your users, accept and send transactions and much more.</b></p>
+	    <p><a href="https://wiki.ultranote.org/ultranote_coin_daemon.html" target="_blank"><b><i>Click here to read more about RPC commands</b></i></p>
+        </article>
+
+    </div>
+</section>
+
+<div class="uk-margin-large-top uk-section-primary">
+    <div class="uk-container">
+        <hr class="uk-margin-remove">
+        <div class="uk-grid-large uk-flex-middle uk-margin-xlarge-top uk-margin-xlarge-bottom" data-uk-grid data-uk-scrollspy="cls: uk-animation-slide-bottom; repeat: true">
+            <div class="uk-width-auto@m">
+                <p class="uk-text-large">Didn't find an answer to your question?</p>
+            </div>
+            <div class="uk-width-expand@m">
+                <a class="tm-button tm-button-xlarge" href="contact.html">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="uk-section tm-primary-color-dark uk-light uk-text-center">
+    <div class="uk-container">
+
+        <div>
+            <ul class="uk-subnav uk-flex-center">
+                <li class="uk-first-column"><a href="index.html">Home</a></li>
+                <li><a href="faq.html">Faq</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="changelog.html">Changelog</a></li>
+                <li><a href="download.html">Download</a></li>
+            </ul>
+        </div>
+        <div class="uk-margin-medium">
+<div data-uk-grid class="uk-child-width-auto uk-grid-small uk-flex-center uk-grid">
+                <div class="uk-first-column">
+                    <a href="https://github.com/xun-project/" target="_blank" data-uk-icon="icon: github" class="uk-icon-link uk-icon"></a>
+                </div>
+                <div>
+                    <a href="https://twitter.com/ultranotecoin" target="_blank" data-uk-icon="icon: twitter" class="uk-icon-link uk-icon"></a>
+                </div>
+                <div>
+                    <a href="https://www.instagram.com/ultranote_official/" target="_blank" data-uk-icon="icon: instagram" class="uk-icon-link uk-icon"></a>
+                </div>
+                <div>
+                    <a href="https://www.facebook.com/Ultranotecoin/" target="_blank" data-uk-icon="icon: facebook" class="uk-icon-link uk-icon"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-margin-medium tm-text-xsmall uk-text-meta copyright">Copyright © 2017 - 2020 UltraNote - XUNI</div>
+
+    </div>
+</footer>
+
+
+<div id="search" class="uk-flex-top uk-background-primary uk-modal-search" data-uk-modal>
+
+    <button class="uk-modal-close-full uk-close-large" type="button" data-uk-close></button>
+    <div class="uk-modal-dialog uk-text-center uk-margin-auto-vertical uk-padding-large">
+
+        <form class="uk-search uk-search-large uk-margin-auto">
+            <input class="uk-search-input uk-text-center" type="search" placeholder="Search...">
+        </form>
+
+    </div>
+</div>
+
+
+<div id="offcanvas" data-uk-offcanvas="flip: true; overlay: true">
+    <div class="uk-offcanvas-bar">
+
+        <button class="uk-offcanvas-close" type="button" data-uk-close></button>
+
+        <ul class="uk-nav uk-nav-default">
+            <li class="uk-nav-header uk-logo">XUNI</li>
+            <li class="uk-parent">
+                <a href="index.html">Home</a>
+            </li>
+            <li ><a href="faq.html">Faq</a></li>
+            <li ><a href="changelog.html">Changelog</a></li>
+            <li ><a href="download.html">Download</a></li>
+            <li ><a href="contact.html">Contact</a></li>
+        </ul>
+
+    </div>
+</div>
+
+
+</body> 
+
+<script type="text/javascript">
+    (function() {
+     var x = document.getElementsByTagName("code")
+    l=x.length
+     for (var i = 0; i < l; i++) {
+       // x[i].classList.add("prettyprint");
+        var e = x[0];
+        console.log(x)
+        var d = document.createElement('pre');
+        d.classList.add("prettyprint");
+        d.classList.add("lang-php");
+        d.innerHTML = e.innerHTML;
+        e.parentNode.replaceChild(d, e);
+     }
+     })();
+</script>
+
+<style type="text/css"> 
+    table td:first-of-type{
+        width:300px;
+    }
+    table, th, td {
+      border: 1px solid white;
+    }
+    table{
+        font-size: small;
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .prettyprint {
+        font-size: small !important;
+        //filter:invert(1);
+        border-radius: 0 !important;
+        border:0px !important;
+    }
+    h3{
+        font-size: 1.4rem;
+        line-height: 1.2;
+        font-weight: 400;
+        letter-spacing: 0;
+        margin-right: 30px;
+        margin-top: 60px;
+    }
+    h4{
+        font-size: 1.2rem;
+        line-height: 1.2;
+        font-weight: 400;
+        letter-spacing: 0;
+        margin-right: 10px;
+        margin-top: 0px;
+    }
+</style>
+</html>
